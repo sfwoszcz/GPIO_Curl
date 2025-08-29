@@ -1,17 +1,17 @@
 /*
-  gpio_curl.c — Partial Exam
-  --------------------------
+  gpio_curl.c 
+  -----------
   a) Read GPIO22 via sysfs as INPUT and print value.
   b) Reconfigure GPIO22 to OUTPUT, set HIGH, verify by reading back.
   c) Send HTTP GET via libcurl containing pin/state:
-       e.g. http://meinserver.de/gpio?pin=22&state=high
+       e.g. http://myserver.com/gpio?pin=22&state=high
 
   Implementation notes
   - Uses raw POSIX I/O: open, read, write, lseek, close, fsync
   - Uses libcurl (easy) for HTTP GET
   - SYSFS base can be overridden via env: SYSFS_GPIO_BASE (default /sys/class/gpio)
   - Pin can be set via argv[1] (default 22)
-  - Base URL via argv[2] (default http://meinserver.de/gpio)
+  - Base URL via argv[2] (default http://myserver.com/gpio)
 
   Build (inside Docker)
     make                 # native (x86_64) with libcurl
