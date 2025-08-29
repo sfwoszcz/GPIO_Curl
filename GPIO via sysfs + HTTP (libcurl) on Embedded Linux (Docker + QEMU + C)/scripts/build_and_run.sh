@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-IMAGE="partial-exam-gpio-curl:latest"
+IMAGE="gpio-curl:latest"
 docker build -t "$IMAGE" .
 docker run --rm -it "$IMAGE" bash -lc '
   set -e
