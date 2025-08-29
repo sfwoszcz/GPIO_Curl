@@ -15,7 +15,7 @@
 
 ---
 
-partial-exam-gpio-curl/
+gpio-curl/
 ├─ Dockerfile
 ├─ Makefile
 ├─ src/gpio_curl.c
@@ -27,7 +27,6 @@ partial-exam-gpio-curl/
 
 ---
 
-
 ## Quick start (native in Docker)
 ```bash
 bash scripts/build_and_run.sh
@@ -38,7 +37,7 @@ bash scripts/build_and_run.sh
 ## QEMU user-mode (ARM) — optional
 Uncomment ARM section in Dockerfile to build gpio_curl.arm, rebuild, then:
 
-docker run --rm -it partial-exam-gpio-curl:latest
+docker run --rm -it gpio-curl:latest
 export SYSFS_GPIO_BASE=/tmp/mockgpio
 ./scripts/prepare_mock_sysfs.sh 22
 qemu-arm-static ./gpio_curl.arm 22 http://localhost:8000/gpio
@@ -48,11 +47,11 @@ qemu-arm-static ./gpio_curl.arm 22 http://localhost:8000/gpio
 ## QEMU system-mode (VM) — optional
 
 # Build initramfs:
-docker run --rm -it -v "$PWD":/app -w /app partial-exam-gpio-curl:latest \
+docker run --rm -it -v "$PWD":/app -w /app gpio-curl:latest \
   bash -lc "./scripts/make_initramfs.sh"
 
 # Provide an ARM kernel at ./kernel/zImage, then:
-docker run --rm -it --net=host -v "$PWD":/app -w /app partial-exam-gpio-curl:latest \
+docker run --rm -it --net=host -v "$PWD":/app -w /app gpio-curl:latest \
   bash -lc "./scripts/run_qemu_system.sh"
 
 ---
@@ -63,8 +62,8 @@ Run the container privileged and mount real sysfs:
 docker run --rm -it --privileged \
   -v /sys/class/gpio:/sys/class/gpio \
   -e SYSFS_GPIO_BASE=/sys/class/gpio \
-  partial-exam-gpio-curl:latest
-./gpio_curl 22 http://meinserver.de/gpio
+  gpio-curl:latest
+./gpio_curl 22 http://myserver.com/gpio
 
 ---
 
