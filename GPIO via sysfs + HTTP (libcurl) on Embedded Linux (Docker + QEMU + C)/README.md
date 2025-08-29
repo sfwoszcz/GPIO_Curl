@@ -1,4 +1,4 @@
-# Partial Exam — GPIO via sysfs + HTTP (libcurl) on Embedded Linux (Docker + QEMU + C)
+# GPIO via sysfs + HTTP (libcurl) on Embedded Linux (Docker + QEMU + C)
 
 ## What it does
 - Reads a GPIO (e.g., 22) via **sysfs** as input and prints its value.
